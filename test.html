@@ -1,0 +1,24 @@
+<html>
+<body>
+  <h1>Test sign in</h1>
+
+  <script>
+
+    print(httpGet("http://127.0.01:5000/checkSignIn.json"));
+
+    function httpGet(theUrl)
+	{
+		       var xmlHttp = new XMLHttpRequest();
+		       xmlHttp.open( "GET", theUrl, false );
+		       xmlHttp.send( null );
+		       return xmlHttp.responseText;
+	}
+
+
+
+  </script>
+
+  <h1>...Finished counting</h1>
+
+</body>
+</html>

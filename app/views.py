@@ -4,6 +4,14 @@ from app import app
 
 # app.run(port=5001)
 
+@app.route('/getSignIn', methods=['GET','POST'])
+
+def getSignIn():
+	list = [
+		{'newCheckin': 'true'}
+		]
+	return jsonify(list)
+
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 
