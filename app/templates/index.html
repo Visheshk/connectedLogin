@@ -1,8 +1,40 @@
 <html>
-  <head>
-    <title>{{ location['mspace'] }} - Makerspace </title>
-  </head>
-  <body>
-      <h1>Hello, {{ user['nickname'] }}!</h1>
-  </body>
+	<head>
+	    <title>{{ location['mspace'] }} - Makerspace </title>
+	</head>
+	<body>
+	  <h1>Hello, {{ user['nickname'] }}!</h1>
+	</body>
+
+	<script>
+
+	function httpGet(theUrl)
+	{
+		       var xmlHttp = new XMLHttpRequest();
+		       xmlHttp.open( "GET", theUrl, false );
+		       xmlHttp.send(null);
+		       return xmlHttp.responseText;
+	}
+
+	setInterval(checkFunc(), 1000);
+
+	function checkFunc(){
+		var json = httpGet("/getSignIn");
+			console.log("yes!");
+	    	obj = JSON.parse(json);
+	    	console.log(obj.newCheckin);
+	    	if(obj.newCheckin){
+	    		window.location.replace("http://127.0.0.1:5000/activity");
+	    	}
+	    	else{
+	    		setInterval(checkFunc(), 1000);
+	    	}
+	}
+
+
+
+	//startCheck();
+
+
+  </script>
 </html>
