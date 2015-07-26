@@ -6,6 +6,8 @@ from app import app
 
 checkCheck = False
 
+global userIdentifier
+
 @app.route('/getSignIn', methods=['GET','POST'])
 def getSignIn():
 	global checkCheck
@@ -16,7 +18,8 @@ def getSignIn():
 @app.route('/activity', methods=['GET', 'POST'])
 def activity():
 	print session.get('var')
-	user = session.get('var')
+	global userIdentifier
+	user = userIdentifier
 	location = {'mspace': 'Central Library'} 
 	return render_template('activity.html',
 							location = location,
@@ -28,11 +31,11 @@ def index():
 	global checkCheck
 	print "starting"
 	if request.method == 'POST':
-		# print(request.data)
+		global userIdentifier
 		checkCheck = True
 		location = {'mspace': 'Central Library'} 
 		user = {'nickname': request.args.get('name')}
-		session['var'] = request.args.get('name')
+		userIdentifier = request.args.get('name')
 		print user
 		print session['var']
 		print session.get('var')
