@@ -17,9 +17,8 @@ def getSignIn():
 
 @app.route('/activity', methods=['GET', 'POST'])
 def activity():
-	print session.get('var')
-	global userIdentifier
-	user = userIdentifier
+	# global userIdentifier
+	# user = userIdentifier
 	location = {'mspace': 'Central Library'} 
 	return render_template('activity.html',
 							location = location,
@@ -34,14 +33,14 @@ def index():
 		global userIdentifier
 		checkCheck = True
 		location = {'mspace': 'Central Library'} 
-		user = {'nickname': request.args.get('name')}
-		userIdentifier = request.args.get('name')
-		print user
-		print session['var']
-		print session.get('var')
+		member = {'memberID': request.args.get('cardID')}
+		print member
+		# userIdentifier = request.args.get('name')
+		# print user
+
 		return render_template('index.html',
                     location = location,
-                    user = user) 
+                    user = member) 
 
 	return render_template('index.html', 
 							location = "test", 

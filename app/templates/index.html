@@ -3,7 +3,7 @@
 	    <title>{{ location['mspace'] }} - Makerspace </title>
 	</head>
 	<body>
-	  <h1>Hello, {{ user['nickname'] }}!</h1>
+	  <h1>Welcome to [LIBRARY] </h1>
 	</body>
 
 	<script>
@@ -24,16 +24,19 @@
 	    	obj = JSON.parse(json);
 	    	console.log(obj.newCheckin);
 	    	if(obj.newCheckin){
-	    		window.location.replace("http://127.0.0.1:5000/activity");
+				alert("Running");
+	    		// window.location.replace("http://127.0.0.1:5000/activity");
+	    		checkUser()
 	    	}
 	    	else{
 	    		setInterval(checkFunc(), 1000);
 	    	}
 	}
-
-
-
-	//startCheck();
+	function checkUser(){
+		var memberCheck = "{{user}}";
+		console.log(memberCheck);
+		console.log("success");
+	}
 
 
   </script>
