@@ -26,15 +26,15 @@
 	    	if(obj.newCheckin){
 				alert("Running");
 	    		// window.location.replace("http://127.0.0.1:5000/activity");
-	    		checkUser()
+	    		checkUser(obj);
 	    	}
 	    	else{
 	    		setInterval(checkFunc(), 1000);
 	    	}
 	}
 	
-	function checkUser(){
-		var memberCheck = "{{user}}";
+	function checkUser(obj){
+		var memberCheck = obj.isMember;
 		console.log(memberCheck);
 		console.log("success");
 	}
