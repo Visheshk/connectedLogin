@@ -1,6 +1,7 @@
 from flask import render_template
-from flask import Flask, request, jsonify, session
+from flask import Flask, request, jsonify, session, redirect, url_for
 from app import app
+import requests
 
 # app.run(port=5001)
 
@@ -17,8 +18,9 @@ def getSignIn():
 
 @app.route('/activity', methods=['GET', 'POST'])
 def activity():
+	print "It worked"
 	# global userIdentifier
-	# user = userIdentifier
+	user = userIdentifier
 	location = {'mspace': 'Central Library'} 
 	return render_template('activity.html',
 							location = location,
@@ -37,10 +39,22 @@ def index():
 		print member
 		# userIdentifier = request.args.get('name')
 		# print user
+		q = requests.post("https://hidden-springs-6751.herokuapp.com/login.json", data=member)
+		print q.text
+		isMember = q.json()["MemberExists"]
+		userIdentifier = q.json()["MemberName"]
+
+		if isMember == False:
+			print "YEAH"
+			print userIdentifier
+			return redirect(url_for('activity'))
+		else:
+			print "Noooooo"
 
 		return render_template('index.html',
                     location = location,
                     user = member) 
+				
 
 	return render_template('index.html', 
 							location = "test", 
