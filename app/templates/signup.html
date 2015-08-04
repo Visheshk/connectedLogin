@@ -25,18 +25,21 @@
 	<script type="text/javascript">
 		$(document).ready( function() {
 		    $("#submit").click(function(){
-			    var name = $('#name').val() 
-			    var zipCode = $('#zipCode').val() 
+			    var name = $('#name').val();
+			    var zipCode = $('#zipCode').val();
+			    console.log("Member ID = " + "{{newMemberID}}");
 				$.ajax({
-			        url: "https://hidden-springs-6751.herokuapp.com/members",
+			        url: "https://hidden-springs-6751.herokuapp.com/members.json",
 			        type: "POST",
 			        contentType: "application/json",
-			        data: {member: {name: name, zipCode: zipCode, MemberID:"4444"}}
+			        data: {member: {name: name, zipCode: zipCode, memberID:"{{newMemberID}}"}}
 			        
 			    }).success(function(data){
 			        alert("succeessss");
+			        window.location = "index";
 			    }).fail(function( jqXHR, textStatus ) {
 			        alert( "Request failed: " + textStatus );
+			        window.location = "index";
 			        console.log(jqXHR);
 			    });
 			})
