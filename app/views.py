@@ -7,13 +7,20 @@ import requests
 
 checkCheck = False
 
-global userIdentifier
-global isMember
+userIdentifier = ""
+
+memberID = ""
+
+#global isMember
 
 @app.route('/getSignIn', methods=['GET','POST'])
 def getSignIn():
 	global checkCheck
-	list = {'newCheckin': checkCheck}
+	global userIdentifier
+	global memberID
+	if(checkCheck == True):
+		print "Sending confirmation for check in";
+	list = {'newCheckin': checkCheck, 'memberID' : memberID, 'name' : userIdentifier}
 	checkCheck = False
 	return jsonify(list)
 
@@ -37,16 +44,17 @@ def signup():
 @app.route('/index', methods=['GET', 'POST'])
 def index(): 
 	global checkCheck
+	global userIdentifier
 	print "starting"
 	location = {'mspace': 'Central Library'} 
 	if request.method == 'POST':
 		global userIdentifier
 		global isMember
+		global memberID
 		checkCheck = True
 		member = {'memberID': request.form['cardID']}
+		memberID = {'memberID': request.form['cardID']}
 		print member
-		# userIdentifier = request.args.get('name')
-		# print user
 		q = requests.post("https://hidden-springs-6751.herokuapp.com/login.json", data=member)
 		print q.text
 		isMember = q.json()["MemberExists"]
@@ -54,9 +62,12 @@ def index():
 		userIdentifier = q.json()["MemberName"]
 
 		if isMember == False:
+			#do stuff for a new member
 			print "YEAH"
 			print userIdentifier
+
 		else:
+			#do stuff for a recurring member
 			print "Noooooo"
 
 		return render_template('index.html',
