@@ -37,11 +37,12 @@
 	        {
 	          memberID: "{{thisMemberID}}",
 	          name: "{{user}}",
-	          location: "{{location['mspace']}}",
+	          location: "{{location}}",
 	          activity: selected
 	        },
 	        function(data,status){
 	            alert("Data: " + data + "\nStatus: " + status);
+	            window.location = "index";
 	        });
 
 		});
