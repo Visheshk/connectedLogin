@@ -53,7 +53,7 @@ def index():
 		global memberID
 		checkCheck = True
 		member = {'memberID': request.form['cardID']}
-		memberID = {'memberID': request.form['cardID']}
+		memberID = request.form['cardID']
 		print member
 		q = requests.post("https://hidden-springs-6751.herokuapp.com/login.json", data=member)
 		print q.text
