@@ -16,7 +16,7 @@
 		       return xmlHttp.responseText;
 	}
 
-	setInterval(checkFunc(), 1000);
+	setInterval(function(){checkFunc()}, 1000);
 
 	function checkFunc(){
 		var json = httpGet("/getSignIn");
@@ -26,9 +26,6 @@
 	    	if(obj.newCheckin){
 	    		// window.location.replace("http://127.0.0.1:5000/activity");
 	    		checkUser();
-	    	}
-	    	else{
-	    		setInterval(checkFunc(), 1000);
 	    	}
 	}
 	
