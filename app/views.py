@@ -11,7 +11,7 @@ userIdentifier = ""
 
 memberID = ""
 
-#global isMember
+isMember = False
 
 @app.route('/getSignIn', methods=['GET','POST'])
 def getSignIn():
@@ -20,14 +20,14 @@ def getSignIn():
 	global memberID
 	if(checkCheck == True):
 		print "Sending confirmation for check in";
-	list = {'newCheckin': checkCheck, 'memberID' : memberID, 'name' : userIdentifier}
+	list = {'newCheckin': checkCheck, 'isMember' : isMember,'memberID' : memberID, 'name' : userIdentifier}
 	checkCheck = False
 	return jsonify(list)
 
 @app.route('/activity', methods=['GET', 'POST'])
 def activity():
 	print "It worked"
-	# global userIdentifier
+	global userIdentifier
 	user = "userIdentifier"
 	location = {'mspace': 'Central Library'} 
 	return render_template('activity.html',
@@ -37,8 +37,9 @@ def activity():
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
 	print "It worked"
-	# global isMember
-	return render_template('signup.html')
+	global isMember
+	global memberID
+	return render_template('signup.html', newMemberID = memberID)
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])

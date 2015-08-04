@@ -22,23 +22,29 @@
 		var json = httpGet("/getSignIn");
 			console.log("yes!");
 	    	obj = JSON.parse(json);
-	    	console.log(obj.newCheckin);
-	    	console.log(obj.memberID);
+	    	console.log("new checkin = "+obj.newCheckin);
+	    	console.log("MemberID = "+obj.memberID);
+	    	console.log("IsMember? "+obj.isMember);
 	    	if(obj.newCheckin){
-	    		// window.location.replace("http://127.0.0.1:5000/activity");
 	    		clearInterval(refreshIntervalId);
-	    		checkUser();
+	    		checkUser(obj.isMember, obj.memberID);
 	    	}
 	}
 	
-	function checkUser(){
-		memCheck = new XMLHttpRequest();
-		memCheck.open("POST", "/index", false);
-		memCheck.send();
-		console.log(memCheck.responseText);
+	function checkUser(isMember, memberID){
+		if(isMember == false){
+			window.location = "signup";
+		}
+		else{
+			window.location = "activity";
+		}
+		//memCheck = new XMLHttpRequest();
+		//memCheck.open("POST", "/index", false);
+		//memCheck.send();
+		//console.log(memCheck.responseText);
 		// var memberCheck = obj.isMember;
 		// console.log(memCheck);
-		console.log("success");
+		//console.log("success");
 	}
 
 
