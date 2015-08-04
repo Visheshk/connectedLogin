@@ -28,11 +28,13 @@ def getSignIn():
 def activity():
 	print "It worked"
 	global userIdentifier
+	global memberID
 	user = "userIdentifier"
 	location = {'mspace': 'Central Library'} 
 	return render_template('activity.html',
 							location = location,
-							user = user)
+							user = userIdentifier,
+			       thisMemberID = memberID)
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
