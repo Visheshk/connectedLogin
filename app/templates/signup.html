@@ -9,7 +9,7 @@
 	  <h1>You need to sign up</h1>
 	
 	<div>
-	<form accept-charset="UTF-8" action="https://hidden-springs-6751.herokuapp.com/members" onsubmit="sub()"class="new_member" id="new_member" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="wFqDqHWEjyGfzukK0oEDiPhB9C4b5tXfWgKJa6iOU2o=" /></div>
+	<form accept-charset="UTF-8" action="https://hidden-springs-6751.herokuapp.com/members" onsubmit="subRedirect()" class="new_member" id="new_member" method="post">
     	<input id="member_MemberID" name="member[MemberID]" size="30" type="hidden" value ="{{newMemberID}}" />
   	<div class="field">
     	<label for="member_name">Nick Name</label><br />
@@ -27,12 +27,11 @@
 	
 	<script>
 
-	function sub(){
-    	window.location = "index";
+		function subRedirect(){
+    		window.location = "index";
+		}
 
-  	}
-
-</script>
+	</script>
 
 	</body>
 	
