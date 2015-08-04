@@ -22,7 +22,7 @@ def rfidResponse(responseID):
 	# 	print "other one"
 	payload = {"cardID":responseID}
 	print payload
-	r = requests.post("http://127.0.0.1:5000/index", params=payload)
+	r = requests.post("http://127.0.0.1:5000/index", data=payload)
 
 while True:
 	try:
