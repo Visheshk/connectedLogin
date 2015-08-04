@@ -1,0 +1,45 @@
+<html>
+	<head>
+      	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  		<script type=text/javascript src="{{url_for('static', filename='jquery-1.11.3.min.js') }}"></script>
+  		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	    <title>This is a - Makerspace </title>
+	</head>
+	<body>
+	  <h1>You need to sign up</h1>
+	
+	<div>
+		<div class="form-group">
+			<label for="name">Your Nickname:</label>
+			<input type="text" class="form-control" id="name">
+		</div>
+		<div class="form-group">
+			<label for="zipCode">Zip Code:</label>
+			<input type="text" class="form-control" id="zipCode">
+		</div>
+
+		<button type="submit" class="btn btn-default" id="submit">Submit</button>
+	</div>
+
+	</body>
+	<script type="text/javascript">
+		$(document).ready( function() {
+		    $("#submit").click(function(){
+			    var name = $('#name').val() 
+			    var zipCode = $('#zipCode').val() 
+				$.ajax({
+			        url: "https://hidden-springs-6751.herokuapp.com/members",
+			        type: "POST",
+			        contentType: "application/json",
+			        data: {member: {name: name, zipCode: zipCode, MemberID:"4444"}}
+			        
+			    }).success(function(data){
+			        alert("succeessss");
+			    }).fail(function( jqXHR, textStatus ) {
+			        alert( "Request failed: " + textStatus );
+			        console.log(jqXHR);
+			    });
+			})
+		});
+	</script>
+</html>

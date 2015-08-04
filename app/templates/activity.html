@@ -1,0 +1,48 @@
+<html>
+	<head>
+	    <title>{{ location['mspace'] }} - Makerspace </title>
+	    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+	  <h1>Hello, {{ user['nickname'] }} - what activity are you doing today:</h1>
+	
+  	<div class="dropdown">
+    	<button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">Pick Your Activity
+    	<span class="caret"></span></button>
+    	<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+      		<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Minecraft</a></li>
+      		<li role="presentation"><a role="menuitem" tabindex="-1" href="#">3D Printing</a></li>
+      		<li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>
+      		<li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>    
+    	</ul>
+  	</div>
+
+	</body>
+	<script>
+		$('.dropdown-menu li').click(function(e){
+		  e.preventDefault();
+		  var selected = $(this).text();
+		  alert(selected);
+		  // $.ajax({
+		  // 	type: "POST:",
+		  // 	dataType: "jsonp",
+		  // 	url: "https://hidden-springs-6751.herokuapp.com/updateDatabase.json",
+		  // 	name: "Mike",
+		  // 	location: "Central Library",
+		  // 	activity: selected,
+		  // });
+		  $.post("https://hidden-springs-6751.herokuapp.com/updateDashboard.json",
+	        {
+	          name: "Donald Duck",
+	          location: "Central Library",
+	          activity: selected
+	        },
+	        function(data,status){
+	            alert("Data: " + data + "\nStatus: " + status);
+	        });
+
+		});
+	</script>
+</html>

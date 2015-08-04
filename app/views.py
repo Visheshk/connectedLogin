@@ -8,6 +8,7 @@ import requests
 checkCheck = False
 
 global userIdentifier
+global isMember
 
 @app.route('/getSignIn', methods=['GET','POST'])
 def getSignIn():
@@ -26,6 +27,12 @@ def activity():
 							location = location,
 							user = user)
 
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+	print "It worked"
+	# global isMember
+	return render_template('signup.html')
+
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 def index(): 
@@ -34,6 +41,7 @@ def index():
 	location = {'mspace': 'Central Library'} 
 	if request.method == 'POST':
 		global userIdentifier
+		global isMember
 		checkCheck = True
 		member = {'memberID': request.args.get('cardID')}
 		print member
