@@ -58,7 +58,7 @@ def index():
 		member = {'memberID': request.form['cardID']}
 		memberID = request.form['cardID']
 		print member
-		print "Member ID" + memberID
+		print "Member ID " + memberID
 		q = requests.post("https://hidden-springs-6751.herokuapp.com/login.json", data=member)
 		print q.text
 		isMember = q.json()["MemberExists"]
