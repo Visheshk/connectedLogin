@@ -20,7 +20,7 @@ def getSignIn():
 def activity():
 	print "It worked"
 	# global userIdentifier
-	user = userIdentifier
+	user = "userIdentifier"
 	location = {'mspace': 'Central Library'} 
 	return render_template('activity.html',
 							location = location,
@@ -31,10 +31,10 @@ def activity():
 def index(): 
 	global checkCheck
 	print "starting"
+	location = {'mspace': 'Central Library'} 
 	if request.method == 'POST':
 		global userIdentifier
 		checkCheck = True
-		location = {'mspace': 'Central Library'} 
 		member = {'memberID': request.args.get('cardID')}
 		print member
 		# userIdentifier = request.args.get('name')
@@ -42,22 +42,25 @@ def index():
 		q = requests.post("https://hidden-springs-6751.herokuapp.com/login.json", data=member)
 		print q.text
 		isMember = q.json()["MemberExists"]
+		print isMember
 		userIdentifier = q.json()["MemberName"]
 
 		if isMember == False:
 			print "YEAH"
 			print userIdentifier
-			return redirect(url_for('activity'))
 		else:
 			print "Noooooo"
 
 		return render_template('index.html',
                     location = location,
-                    user = member) 
+                    user = member
+                    ) 
+		# jsonify(isMember=isMember)
+		
 				
 
 	return render_template('index.html', 
-							location = "test", 
+							location = location, 
 							user = 'user')
 
 app.secret_key = 'you-will-never-guess'
