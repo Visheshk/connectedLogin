@@ -43,7 +43,7 @@ def index():
 		global userIdentifier
 		global isMember
 		checkCheck = True
-		member = {'memberID': request.args.get('cardID')}
+		member = {'memberID': request.form['cardID']}
 		print member
 		# userIdentifier = request.args.get('name')
 		# print user
