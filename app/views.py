@@ -20,7 +20,7 @@ def getSignIn():
 	global memberID
 	if(checkCheck == True):
 		print "Sending confirmation for check in";
-	list = {'newCheckin': checkCheck, 'isMember' : isMember,'memberID' : memberID, 'name' : userIdentifier}
+	list = {'newCheckin': checkCheck, 'isMember' : isMember,'MemberID' : memberID, 'name' : userIdentifier}
 	checkCheck = False
 	return jsonify(list)
 
@@ -55,7 +55,7 @@ def index():
 		global isMember
 		global memberID
 		checkCheck = True
-		member = {'memberID': request.form['cardID']}
+		member = {'MemberID': request.form['cardID']}
 		memberID = request.form['cardID']
 		print member
 		print "Member ID " + memberID
