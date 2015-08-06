@@ -9,24 +9,52 @@
 	  <h1>You need to sign up</h1>
 	
 	<div>
-	<form accept-charset="UTF-8" action="https://hidden-springs-6751.herokuapp.com/members" class="new_member" id="new_member" method="post">
-    	<input id="member_MemberID" name="member[MemberID]" size="30" type="hidden" value ="{{newMemberID}}" />
-  	<div class="field">
-    	<label for="member_name">Nick Name</label><br />
-    	<input id="member_name" name="member[name]" size="30" type="text" />
-  	</div>
-  	<div class="field">
-    	<label for="member_ZipCode">Zipcode</label><br />
-    	<input id="member_ZipCode" name="member[ZipCode]" size="30" type="text" />
-  	</div>
-  	<input type="submit" />
-	</form>
+		<form accept-charset="UTF-8" action="https://hidden-springs-6751.herokuapp.com/members" class="new_member" id="new_member" method="post">
+	    	<input id="member_MemberID" name="member[MemberID]" size="30" type="hidden" value ="{{newMemberID}}" />
+	  		<div class="field">
+		    	<label for="member_name">Nick Name</label><br />
+		    	<input id="member_name" name="member[name]" size="30" type="text" />
+	  		</div>
+	  		<div class="field">
+		    	<label for="member_ZipCode">Zipcode</label><br />
+		    	<input id="member_ZipCode" name="member[ZipCode]" size="30" type="text" />
+	  		</div>
+	  		<input type="submit" id="submit_button"/>
+		</form>
 	</div>
 	
 	<script>
-		$('#submit_button').click(function () {
-    		window.location = 'index';
+	// 	$('#submit_button').click(function() {
+	// 		$('#pgpost').submit();
+	// 		alert("Button");
+ //   //  		window.location = 'index';
+	// 	});
+	</script>
+	<script>
+		$(function() {
+		    // Get the form.
+		    var form = $('#new_member');
+
+		    // var formMessages = $('#form-messages');
+
+    		$(form).submit(function(event) {
+    		// Stop the browser from submitting the form.
+	    		alert("stopped");
+	    		event.preventDefault();
+	    		var formData = $(form).serialize();
+	    		console.log(formData);
+				$.post("https://hidden-springs-6751.herokuapp.com/members",
+			        formData,
+			        function(data,status){
+			            
+			            window.location = "index";
+			        });
+	    		// window.location = 'index';
+			});
+
+
 		});
+
 	</script>
 
 	</body>
