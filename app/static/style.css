@@ -1,0 +1,11 @@
+#banner img{
+	width:100%
+}
+
+#login-fields{
+	text-align: center;
+    margin-top: 80px;
+}
+#login-fields form{
+	display: inline;
+}

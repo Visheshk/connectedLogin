@@ -3,33 +3,31 @@
       	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   		<script type=text/javascript src="{{url_for('static', filename='jquery-1.11.3.min.js') }}"></script>
   		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 	    <title>This is a - Makerspace </title>
 	</head>
 	<body>
-	  <h1>You need to sign up</h1>
+		<div id="banner">
+			<img src="{{url_for('static', filename='bubbler.jpeg')}}"></img>
+		</div>
+  		<h1 style="text-align:center; margin-top:10%">Create your maker account to get started</h1>
 	
-	<div>
-		<form accept-charset="UTF-8" action="https://hidden-springs-6751.herokuapp.com/members" class="new_member" id="new_member" method="post">
-	    	<input id="member_MemberID" name="member[MemberID]" size="30" type="hidden" value ="{{newMemberID}}" />
-	  		<div class="field">
-		    	<label for="member_name">Nick Name</label><br />
-		    	<input id="member_name" name="member[name]" size="30" type="text" />
-	  		</div>
-	  		<div class="field">
-		    	<label for="member_ZipCode">Zipcode</label><br />
-		    	<input id="member_ZipCode" name="member[ZipCode]" size="30" type="text" />
-	  		</div>
-	  		<input type="submit" id="submit_button"/>
-		</form>
-	</div>
+		<div id="login-fields">
+			<form accept-charset="UTF-8" action="https://hidden-springs-6751.herokuapp.com/members" class="new_member form-inline" id="new_member" method="post">
+		    	<input id="member_MemberID" name="member[MemberID]" size="30" type="hidden" value ="{{newMemberID}}" />
+		  		<div class="form-group">
+			    	<label for="member_name">Nickname</label>
+			    	<input class="form-control" id="member_name" name="member[name]" size="30" type="text" placeholder="Create you nickname"/>
+		  		</div>
+		  		<div class="form-group">
+			    	<label for="member_ZipCode">Zipcode</label>
+			    	<input class="form-control" id="member_ZipCode" name="member[ZipCode]" size="30" type="text" placeholder="Enter your Zipcode"/>
+		  		</div>
+		  		<input class="btn btn-default" type="submit" id="submit_button" />
+			</form>
+		</div>
 	
-	<script>
-	// 	$('#submit_button').click(function() {
-	// 		$('#pgpost').submit();
-	// 		alert("Button");
- //   //  		window.location = 'index';
-	// 	});
-	</script>
+	</body>
 	<script>
 		$(function() {
 		    // Get the form.
@@ -56,7 +54,4 @@
 		});
 
 	</script>
-
-	</body>
-	
 </html>
