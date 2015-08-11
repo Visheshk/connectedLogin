@@ -12,7 +12,7 @@
 		</div>
 	  	<h1 style="text-align:center; margin-top:10%">Hi, {{user}} - what activity are you doing today?</h1>
 	
-  	<div class="dropdown" style="text-align:center;" >
+  	<div class="dropdown"  >
     	<button class="btn btn-default dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">Pick Your Activity
     	<span class="caret"></span></button>
     	
@@ -29,7 +29,7 @@
 		$('.dropdown-menu li').click(function(e){
 		  e.preventDefault();
 		  var selected = $(this).text();
-		  alert(selected);
+		  alert("Thanks! Get started on " +selected);
 		  // $.ajax({
 		  // 	type: "POST:",
 		  // 	dataType: "jsonp",
@@ -46,7 +46,7 @@
 	          activity: selected
 	        },
 	        function(data,status){
-	            alert("Data: " + data + "\nStatus: " + status);
+	            // alert("Data: " + data + "\nStatus: " + status);
 	            window.location = "index";
 	        });
 
